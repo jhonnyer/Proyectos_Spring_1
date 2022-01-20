@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title th:text="${titulo}"></title>
+</head>
+
+<body>
+	<h1 th:text="${titulo}"></h1>
+	<!--<form th:action="@{/form}" method="POST">-->
+	<!--Paso el objeto usuario al formulario. Optimiza el codigo-->
+	<form th:action="@{/form}" th:object="${usuario}" method="POST">
+		<div>
+			<label for="identificador">Identificador</label>
+			<div>
+				<!--Optimizacion del codigo entrada de datos. No es necesario en name y el  th:value-->
+				<input type="text" id="identificador" th:field="*{identificador}" >
+			</div>
+			<!--Mensaje de error optimizado con thymeleaf-->
+			<div th:if="${#fields.hasErrors('identificador')}" th:errors="*{identificador}"></div>
+		</div>
+		<div>
+			<label for="nombre">Nombre de usuario</label>
+			<div>
+				<!--Optimizacion del codigo entrada de datos. No es necesario en name y el  th:value-->
+				<input type="text" id="nombre" th:field="*{nombre}" >
+			</div>
+			<!--Mensaje de error optimizado con thymeleaf-->
+			<div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+		</div>
+		<div>
+			<label for="apellido">Apellido de usuario</label>
+			<div>
+				<!--Optimizacion del codigo entrada de datos. No es necesario en name y el  th:value-->
+				<input type="text" id="apellido" th:field="*{apellido}" >
+			</div>
+			<!--Mensaje de error optimizado con thymeleaf-->
+			<div th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
+		</div>
+		<div>
+			<label for="username">Login usuario</label>
+			<div>
+				<!--Optimizacion del codigo entrada de datos. No es necesario en name y el  th:value-->
+				<input type="text" id="username" th:field="*{username}" >
+				<!--<input type="text" name="username" id="username" th:value="${usuario.username}" >-->
+			</div>
+			<!--Mensaje de error optimizado con thymeleaf-->
+			<div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+			<!--<div th:if="${error !=null && error.containsKey('username')}" th:text="${error.username}"></div>-->
+		</div>
+		<div>
+			<label for="password">Password</label>
+			<div>
+				<!--Optimizacion del codigo entrada de datos. No es necesario en name y el  th:value-->
+				<input type="password" id="password" th:field="*{password}" >
+				<!--<input type="password" name="password" id="password">-->
+			</div>
+			<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+			<!--<div th:if="${error !=null && error.containsKey('password')}" th:text="${error.password}"></div>-->
+		</div>
+		<div>
+			<label for="email">Correo Electronico</label>
+			<div>
+				<!--Optimizacion del codigo entrada de datos. No es necesario en name y el  th:value-->
+				<input type="text" id="email" th:field="*{email}" >
+				<!--<input type="email" name="email" id="email" th:value="${usuario.email}">-->
+			</div>
+			<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+			<!--<div th:if="${error !=null && error.containsKey('email')}" th:text="${error.email}"></div>-->
+		</div>
+		<div>
+			<div>
+				<input type="submit" value="Enviar">
+			</div>
+		</div>
+	</form>
+</body>
+
+</html>
